@@ -38,20 +38,11 @@ class Instance:
         self.H = len(vehicles) # 车辆数量
         self.L = [vehicle.capacity for vehicle in vehicles] # 车辆容量
 
-        for customers in customers:
-            self.q.append(customers.demand)
-            self.service_times.append(customers.service_time)
-            self.customers_coor.append([customers.x_coor, customers.y_coor])
-        
-        for vehicles in vehicles:
-            self.L.append(vehicles.capacity)
-
-        for periods in periods:
-            self.b.append(periods.begin_time)
-            self.e.append(periods.end_time)
+        for customer in customers:
+            self.q.append(customer.demand)
+            self.service_times.append(customer.service_time)
+            self.customers_coor.append([customer.x_coor, customer.y_coor])
             
         self.parameters = parameters
         self.M = 100 # 一个很大的数，用于约束
 
-
-    

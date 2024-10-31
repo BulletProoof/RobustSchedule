@@ -29,7 +29,7 @@ def read_periods(file_path):
     for i in range(len(df)):
         id = int(df['PeriodID'][i])
         start, end = int(df["Start"][i]), int(df["End"][i])
-        periods.append([start, end])
+        periods.append(Period(id, start, end))
     return periods
 
 def read_distance_matrix(file_path):
@@ -38,7 +38,7 @@ def read_distance_matrix(file_path):
     
     for i in range(len(df)):
         for j in range(len(df)):
-            distance_matrix[i][j] = df.iloc[i, j]
+            distance_matrix[i][j] = float(df.iloc[i, j])
             
     return distance_matrix
 
@@ -55,7 +55,7 @@ def read_risk_matrix(file_path):
     risk = {}
     for i in range(len(df)):
         origin, destination, period = int(df["origin"][i]), int(df["destination"][i]), int(df["period"][i])
-        risk[origin, destination, period] = df["risk"][i]
+        risk[origin, destination, period] = float(df["risk"][i])
     return risk
 
 def read_parameters(file_path):
