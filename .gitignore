@@ -1,3 +1,5 @@
 /else
 /gurobi_schedule.py
 *.pyc
+*.ilp
+/test/*

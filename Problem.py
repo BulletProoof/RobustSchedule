@@ -24,6 +24,8 @@ class Instance:
     def __init__(self, customers, periods, vehicles, distance_matrix, velocity, risk_matrix, parameters):
         self.N = len(customers) # 顾客数量，包括仓库0
         self.q = [] # 顾客需求
+        self.a = [] # 车辆到达时间
+        self.l = [] # 车辆离开顾客的时间
         self.service_times = [] # 服务时间
         self.customers_coor = [] # 顾客坐标
         self.distance_matrix = distance_matrix # 距离矩阵
@@ -42,6 +44,8 @@ class Instance:
             self.q.append(customer.demand)
             self.service_times.append(customer.service_time)
             self.customers_coor.append([customer.x_coor, customer.y_coor])
+            self.a.append(customer.ready_time)
+            self.l.append(customer.ready_time)
             
         self.parameters = parameters
         self.M = 100 # 一个很大的数，用于约束

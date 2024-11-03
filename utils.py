@@ -1,5 +1,6 @@
 import pandas as pd
 from Problem import *
+from collections import defaultdict
 
 def read_customers(file_path):
     df = pd.read_csv(file_path)
@@ -44,15 +45,15 @@ def read_distance_matrix(file_path):
 
 def read_velocity(file_path):
     df = pd.read_csv(file_path)
-    velocity = {}
+    velocity = defaultdict(lambda: 1e-9)
     for i in range(len(df)):
         origin, destination, period = int(df["origin"][i]), int(df["destination"][i]), int(df["period"][i])
-        velocity[origin, destination, period] = df["velocity"][i]
+        velocity[origin, destination, period] = float(df["velocity"][i])
     return velocity
 
 def read_risk_matrix(file_path):
     df = pd.read_csv(file_path)
-    risk = {}
+    risk = defaultdict(lambda: 1e9)
     for i in range(len(df)):
         origin, destination, period = int(df["origin"][i]), int(df["destination"][i]), int(df["period"][i])
         risk[origin, destination, period] = float(df["risk"][i])
